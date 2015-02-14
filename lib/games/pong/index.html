@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
+    <script type="text/javascript" src="../supers/utilities/Collection.js"></script>
+    <script type="text/javascript" src="../supers/utilities/Point.js"></script>
+    <script type="text/javascript" src="../supers/utilities/Vector.js"></script>
+    <script type="text/javascript" src="../supers/utilities/Lists.js"></script>
+    <script type="text/javascript" src="../supers/Attributes.js"></script>
+    <script type="text/javascript" src="../supers/Moves.js"></script>
+    <script type="text/javascript" src="../supers/Collision.js"></script>
+    <script type="text/javascript" src="../supers/Renderer.js"></script>
+    <script type="text/javascript" src="../supers/ScoreBoard.js"></script>
+    <script type="text/javascript" src="../supers/KeyBinds.js"></script>
+    <script type="text/javascript" src="../supers/Loader.js"></script>
+    <script type="text/javascript" src="../supers/Entity.js"></script>
+    <script type="text/javascript" src="../supers/Player.js"></script>
+    <script type="text/javascript" src="../supers/Loop.js"></script>
+    <script type="text/javascript" src="../supers/Ai.js"></script>
+    <script type="text/javascript" src="../supers/Roles.js"></script>
+    <script type="text/javascript" src="../supers/Game.js"></script>
+
+
+    <script type="text/javascript" src="PongRoles.js"></script>
+    <script type="text/javascript" src="PongAi.js"></script>
+    <script type="text/javascript" src="PongAttributes.js"></script>
+    <script type="text/javascript" src="PongMoves.js"></script>
+    <script type="text/javascript" src="PongCollision.js"></script>
+    <script type="text/javascript" src="PongBallCollision.js"></script>
+    <script type="text/javascript" src="PongScoreBoard.js"></script>
+    <script type="text/javascript" src="PongEntity.js"></script>
+    <script type="text/javascript" src="PongKeyBinds.js"></script>
+    <script type="text/javascript" src="PongPlayer.js"></script>
+    <script type="text/javascript" src="PongBall.js"></script>
+    <script type="text/javascript" src="PongLoop.js"></script>
+    <script type="text/javascript" src="PongGame.js"></script>
+
+    <title>My second game</title>
+</head>
+<body>
+<div id="page">
+    <div id="gameCanvas"></div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    var Point = window.game.class.Point,
+            Vector = window.game.class.Vector,
+            keyup,
+            keydown
+            ,options = {
+                canvas : {
+                    node : document.getElementById('gameCanvas'),
+                    width : 900,
+                    height : 500
+                }
+            }
+            ,pong
+            ;
+    pong = new window.game.class.PongGame(options);
+    pong.init();
+
+
+    var playerOps = {id:1231234234,  name : 'Mr.Shmelow', local:true};
+    var pongPlayer = new window.game.class.PongPlayer(playerOps,pong);
+    pong.addPlayer(pongPlayer);
+
+    playerOps = {id:1231234236,  name : 'player2', position:new Point((pong.canvas.width-40), (pong.canvas.height/2) - 50)};
+    var player2 = new window.game.class.PongPlayer(playerOps,pong);
+    pong.addPlayer(player2);
+
+    var ball = new window.game.class.PongBall({id:1231234235},pong);
+    pong.addEntity(ball);
+
+
+    pong.scoreBoard.init();
+
+    document.addEventListener("keydown", function(e){
+        var key = e.which || e.keyCode;
+        if(key == 87 || key == 38) pong.setKeyPress({k:key,s:1});
+        if(key == 83 || key == 40) pong.setKeyPress({k:key,s:1});
+    });
+
+
+    document.addEventListener("keyup", function(e){
+        var key = e.which || e.keyCode;
+        if(key == 87 || key == 38) pong.setKeyPress({k:key,s:0});
+        if(key == 83 || key == 40) pong.setKeyPress({k:key,s:0});
+    });
+
+
+    setTimeout(function(){
+        ball.ai.start();
+    }, 1000);
+
+
+    setInterval(function(){
+        var snapshot = pong.takeSnapShot();
+        console.log(snapshot.u[2].p.x, snapshot.u[2].p.y);
+    }, 13);
+
+    pong.start();
+</script>
+
