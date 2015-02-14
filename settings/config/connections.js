@@ -2,23 +2,23 @@
 module.exports = {
 
     /*
-    * which connection to use as default
-    * */
+     * which connection to use as default
+     * */
     defaultConnection : "mongoDB",
 
     /*
-    * what is the collection name to use for models.
-    * */
+     * what is the collection name to use for models.
+     * */
     defaultCollection : "nodeExpIOTesting",
 
     /*
-    * number of connection retries.
-    * */
+     * number of connection retries.
+     * */
     retries : 5,
 
     /*
-    * mongo db
-    * */
+     * mongo db
+     * */
     mongoDB: {
         adapter     : 'mongoose',
         host        : '54.165.132.121',
@@ -26,6 +26,16 @@ module.exports = {
         user        : 'testDB',
         password    : 'abc123',
         database    : 'testDB'
+    },
+
+
+    /*
+     * redis db
+     * */
+    redis: {
+        adapter     : 'redis',
+        host        : '54.165.132.121',
+        port        : 6379
     }
 
 
