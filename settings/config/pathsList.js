@@ -9,6 +9,7 @@ module.exports = function(_s){
         "Games" : serverDirname + '/lib/modules/games.js',
         "GamesApi" : serverDirname + '/lib/modules/gamesApi.js',
         "oReq" : serverDirname + '/lib/requiredFiles.js',
+        "oRouts" : serverDirname + '/lib/requiredRouts.js',
         "oWebSockets" : serverDirname + '/lib/requiredWebSockets.js',
         "QueuesApi" : serverDirname + '/lib/modules/queuesApi.js',
         "Servers" : serverDirname + '/lib/modules/servers.js',

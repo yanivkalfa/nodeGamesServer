@@ -8,6 +8,7 @@ var pathsList = _s.oConfig.pathsList;
 _s.oWebSockets = require(pathsList.oWebSockets)(_s);
 var Games = require(pathsList.Games)(_s);
 _s.Games = new Games();
+_s.oRouts = require(pathsList.oRouts)(_s);
 
 _s.oReq.http.listen(_s.details.port, function(){
     console.log('listening on *:' + _s.details.port);
